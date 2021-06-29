@@ -38,7 +38,15 @@ router.get('/delete-contact/:id', (req, res) => {
 })
 
 router.get('/update-contact/:id', (req, res) => {
-  db.ref('contacts/' + req.params.id).toJSON;
+  let formulario = document.getElementsByClassName('card-footer')
+  let numero = req.params.id;
+  console.log(numero)
+  db.ref('contacts/' + req.params.id).update({
+    firstname: "Sergio",
+    lastname: "andres",
+    email: "andres@gmail.com",
+    phone: 3214579
+  });
   res.redirect('/')
 })
 
