@@ -38,15 +38,19 @@ router.get('/delete-contact/:id', (req, res) => {
 })
 
 router.get('/update-contact/:id', (req, res) => {
-  let formulario = document.getElementsByClassName('card-footer')
-  let numero = req.params.id;
-  console.log(numero)
-  db.ref('contacts/' + req.params.id).update({
-    firstname: "Sergio",
-    lastname: "andres",
-    email: "andres@gmail.com",
-    phone: 3214579
-  });
+  db.ref('contacts/' + req.params.id).once('value', (snapshopt) => {
+    res.render('updateUser', {user: snapshopt.val(), userId: req.params.id})
+  })
+})
+
+router.post('/save-contact/:id', (req, res) => {
+  const contactForm = {
+      firstname: req.body.firstName,
+      lastname: req.body.lastName,
+      email: req.body.email,
+      phone: req.body.phone
+  }
+  db.ref('contacts/' + req.params.id).update(contactForm)
   res.redirect('/')
 })
 
