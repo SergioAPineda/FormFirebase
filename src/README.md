@@ -1,0 +1,1 @@
+$env:GOOGLE_APPLICATION_CREDENTIALS="D:\ProyectosNodeJS\ejemploFireBase\node-firebase-example-f18bc-firebase-adminsdk-e54ja-217105aa68.json"
